@@ -1598,7 +1598,7 @@ SpotifyWebApi.prototype = {
    * @returns {Promise|undefined} A promise that if successful, resolves into a paging object of tracks,
    *          otherwise an error. Not returned if a callback is given.
    */
-  getMyTopArtists: function(options, callback) {
+  getMyTopTracks: function(options, callback) {
     return WebApiRequest.builder(this.getAccessToken())
       .withPath('/v1/me/top/artists')
       .withQueryParameters(options)
