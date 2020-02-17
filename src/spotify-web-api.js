@@ -624,6 +624,7 @@ SpotifyWebApi.prototype = {
    * @returns {Promise|undefined} A promise that if successful, simply resolves to an empty object. If rejected,
    * it contains an error object. Not returned if a callback is given.
    */
+  /*
   uploadCustomPlaylistCoverImage: function(
     userId,
     playlistId,
@@ -638,6 +639,24 @@ SpotifyWebApi.prototype = {
           playlistId +
           '/images'
       )
+      .withHeaders({ 'Content-Type': 'image/jpeg' })
+      .withBodyParameters(base64URI)
+      .build()
+      .execute(HttpManager.put, callback);
+  },
+*/
+  /**
+   * Replace the image used to represent a specific playlist.
+   * @param {string} playlistId The playlist's ID
+   * @param {string} base64URI Base64 encoded JPEG image data, maximum payload size is 256 KB
+   * @param {requestCallback} [callback] Optional callback method to be called instead of the promise.
+   * @example uploadCustomPlaylistCoverImage('thelinmichael', '3EsfV6XzCHU8SPNdbnFogK', 'longbase64uri').then(...)
+   * @returns {Promise|undefined} A promise that if successful, simply resolves to an empty object. If rejected,
+   * it contains an error object. Not returned if a callback is given.
+   */
+  uploadCustomPlaylistCoverImage: function(playlistId, base64URI, callback) {
+    return WebApiRequest.builder(this.getAccessToken())
+      .withPath('/v1/playlists/' + playlistId + '/images')
       .withHeaders({ 'Content-Type': 'image/jpeg' })
       .withBodyParameters(base64URI)
       .build()
